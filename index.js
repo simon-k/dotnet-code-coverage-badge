@@ -4,6 +4,8 @@ const http = require('https');
 try {
   const opencoverPath = core.getInput('opencover_path');
   
+  console.log("OpencoverPath: " + opencoverPath)
+  
   //TODO: Extract coverage from opencover file
 
   //TODO: Generate json that shields.io can use
