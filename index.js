@@ -3,7 +3,7 @@ const http = require('https');
 const fs = require('fs')
 
 try {
-  const opencoverPath = 'test/coverage.opencover.xml'//core.getInput('opencover_path');
+  const opencoverPath = core.getInput('opencover_path');
   
   var opencoverReport = readOpencoverFile(opencoverPath);
   var coveragePercentage = extractSummaryFromOpencover(opencoverReport);

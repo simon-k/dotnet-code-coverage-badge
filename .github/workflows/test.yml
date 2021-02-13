@@ -22,7 +22,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: test_step
         with:
-          opencover_path: "SomePath/opencover.xml"
+          opencover_path: "test/coverage.opencover.xml"
         
       - name: Print code coverage
         run: echo "Code coverage percentage ${{ steps.test_step.outputs.coverage_percentage }} %"
