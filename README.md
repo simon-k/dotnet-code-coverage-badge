@@ -1,5 +1,6 @@
 ![Build](https://github.com/simon-k/dotnet-code-coverage-badge/workflows/CI/badge.svg?branch=main)
 [![license](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+![semver](https://img.shields.io/badge/semver-2.0.0-blue)
 [![market](https://img.shields.io/badge/Get_it-on_the_Marketplace-informational.svg)](https://github.com/marketplace/actions/dotnet-code-coverage-badge)
 
 # .NET Code Coverage Badge
