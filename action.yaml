@@ -1,1 +1,11 @@
+name: 'DotNet Code Coverage Badge'
+description: 'Extact code coverage percentage from an opencover report and generates metadata for a shields.io badge'
 
+inputs:
+  opencover_path:
+    description: 'the path to the opencover.xml file'
+    required: true
+    
+outputs:
+  coverage_percentage:
+    description: 'The code coverage percentage'
