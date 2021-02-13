@@ -30,7 +30,6 @@ function createBadgeData(label, coveragePercentage, color) {
   return badgeData;
 }
 
-
 function readFile(path) {
   if (!fs.existsSync(path)) {
     throw new Error('The file was not found at the location: "' + path + '"'); 
@@ -38,7 +37,6 @@ function readFile(path) {
 
   return fs.readFileSync(path, 'utf8');
 }
-
 
 function extractSummaryFromOpencover(content) {
   let rx = /(?<=sequenceCoverage=")\d*\.*\d*(?=")/m;

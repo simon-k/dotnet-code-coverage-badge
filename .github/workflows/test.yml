@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -30,4 +29,4 @@ jobs:
         run: echo "Code coverage percentage ${{steps.test_step.outputs.percentage}}%"
 
       - name: Print badge data
-        run: echo "Badge data ${{steps.test_step.outputs.badge}}%"
+        run: echo "Badge data ${{steps.test_step.outputs.badge}}"
