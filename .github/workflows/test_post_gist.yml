@@ -24,7 +24,7 @@ jobs:
           label: "My Label"
           color: "red"
           path: "test/coverage.opencover.xml"
-          gist-filename: "code-coverage.yml"
+          gist-filename: "code-coverage.json"
           gist-id: "7b6fcd8cecf36e9cc83276540e9f2867"
           gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
 

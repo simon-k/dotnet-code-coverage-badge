@@ -3,6 +3,8 @@
 ![semver](https://img.shields.io/badge/semver-2.0.0-blue)
 [![market](https://img.shields.io/badge/Get_it-on_the_Marketplace-informational.svg)](https://github.com/marketplace/actions/dotnet-code-coverage-badge)
 
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/simon-k/7b6fcd8cecf36e9cc83276540e9f2867/raw/code-coverage.json)
+
 # .NET Code Coverage Badge
 This action allows you to create badges for your README.md, with shields.io, which will show the code coverage percentage. This action does not need to push anything to your repository - it will use a gist instead. 
 
@@ -28,7 +30,7 @@ TODO: What to add in your readme
 ## Step-by-step Guide
 ### Create Gist
 1. Go to [gist.github.com](https://gist.github.com/)
-2. Create a new gist, and name the file something like ```code-coverage.yml```
+2. Create a new gist, and name the file something like ```code-coverage.json```
 3. Save the filename and the Gist ID (the long alphanumerical part of its URL). You'll need those later.
 TODO: Insert screenshot here
 4. Navigate to the [GitHub Developer Settings](https://github.com/settings/tokens) and create a new token with the gist scope. Save the token for later. NOTE: This must be done with the same user account that created the gist. And it is needed for the workflow to be able to update the Gist.
@@ -41,7 +43,15 @@ TODO: Insert screenchot here
 1. TODO: Describe steps
 
 ### Update Your Readme
-1. TODO: Describe steps
+Once the workflow is executed, got to your gist and make sure that the content of this file now contains the badge data.
+Embed the badge in your README like this:
+
+```
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/<user>/<gist-id>/raw/<gist-filename>)
+```
+
+The ```<user>``` is the user who owns the gist.
+
 
 ## Contributing .NET Code Coverage Badge
 ### Bugs and Features
