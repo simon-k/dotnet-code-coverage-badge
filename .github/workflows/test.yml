@@ -16,10 +16,13 @@ jobs:
     
     name: Test the action
     steps:
+      - uses: actions/checkout@v2
+        
       - name: Get code coverage
         uses: ./ # Uses an action in the root directory
         id: test_step
         with:
           opencover_path: "SomePath/opencover.xml"
-      - name: Get the code coverage
+        
+      - name: Print code coverage
         run: echo "Code coverage percentage ${{ steps.test_step.outputs.coverage_percentage }} %"
