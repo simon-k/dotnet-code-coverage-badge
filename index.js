@@ -6,17 +6,56 @@ try {
   const label = core.getInput('label');
   const path = core.getInput('path');
   const color = core.getInput('color');
+  const gistFilename = core.getInput('gist-filename');
+  const gistId = core.getInput('gist-id');
+  const gistAuthToken = core.getInput('gist-auth-token');
 
   let testReport = readFile(path);
   let coveragePercentage = extractSummaryFromOpencover(testReport);
   let badgeData = createBadgeData(label, coveragePercentage, color);
-
-  //TODO: Upload the json to a gist.
+  publishBadge(badgeData, gistFilename, gistId, gistAuthToken);
 
   core.setOutput("badge", badgeData);
   core.setOutput("percentage", coveragePercentage);
 } catch (error) {
   core.setFailed(error);
+}
+
+function publishBadge(badgeData, gistFilename, gistId, gistAuthToken) {
+  if (gistFilename == null || gistId == null || gistAuthToken == null) {   //TODO: Test for null or undefined?
+    Console.log("Posting shields.io data to Gist");
+    postGist(badgeData, gistFilename, gistId, gistAuthToken);
+  }
+  else {
+    Console.log("GitHub Gist filename, id and auth token are required to post shields.io data");
+  }
+}
+
+function postGist(badgeData, gistFilename, gistId, gistAuthToken) {
+  const request = JSON.stringify({
+    files: {[gistFilename]: {content: JSON.stringify(badgeData)}}
+  });
+
+  const req = http.request(
+      {
+        host: 'api.github.com',
+        path: '/gists/' + gistId,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': request.length,
+          'User-Agent': 'simon-k',
+          'Authorization': 'token ' + gistAuthToken,
+        }
+      },
+      res => {
+        let body = '';
+        res.on('data', data => body += data);
+        res.on('end', () => console.log('result:' + body));
+      });
+
+  req.write(request);
+  req.end();
 }
 
 function createBadgeData(label, coveragePercentage, color) {

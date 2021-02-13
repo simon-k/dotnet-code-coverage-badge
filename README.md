@@ -27,7 +27,15 @@ TODO: What to add in your readme
 
 ## Step-by-step Guide
 ### Create Gist
-1. TODO: Describe steps
+1. Go to [gist.github.com](https://gist.github.com/)
+2. Create a new gist, and name the file something like ```code-coverage.yml```
+3. Save the filename and the Gist ID (the long alphanumerical part of its URL). You'll need those later.
+TODO: Insert screenshot here
+4. Navigate to the [GitHub Developer Settings](https://github.com/settings/tokens) and create a new token with the gist scope. Save the token for later. NOTE: This must be done with the same user account that created the gist. And it is needed for the workflow to be able to update the Gist.
+TODO: Insert screenshot here
+4. Go to the Secrets page of the settings of the repository running the workflow
+5. Create a new repository secret, containing the token from step 4. Name it something like ```GIST_AUTH_TOKEN```.
+TODO: Insert screenchot here
 
 ### Configure Workflow
 1. TODO: Describe steps

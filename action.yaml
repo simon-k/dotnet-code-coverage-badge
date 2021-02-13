@@ -13,6 +13,15 @@ inputs:
   path:
     description: 'the path to the opencover.xml file'
     required: true
+  gist-filename:
+    description: 'Filename of the Gist used for storing the badge data'
+    required: false
+  gist-id:
+    description: 'ID if the Gist used for storing the badge data'
+    required: false
+  gist-auth-token:
+    description: 'Auth token that alows to write to the given Gist'
+    required: false
 
 outputs:
   percentage:
