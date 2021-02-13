@@ -3,6 +3,7 @@
 ![semver](https://img.shields.io/badge/semver-2.0.0-blue)
 [![market](https://img.shields.io/badge/Get_it-on_the_Marketplace-informational.svg)](https://github.com/marketplace/actions/dotnet-code-coverage-badge)
 
+When using this action you'll get a badge like this:
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/simon-k/7b6fcd8cecf36e9cc83276540e9f2867/raw/code-coverage.json)
 
 # .NET Code Coverage Badge

@@ -21,8 +21,8 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: test_step
         with:
-          label: "My Label"
-          color: "red"
+          label: "Code Coverage"
+          color: "green"
           path: "test/coverage.opencover.xml"
           gist-filename: "code-coverage.json"
           gist-id: "7b6fcd8cecf36e9cc83276540e9f2867"
