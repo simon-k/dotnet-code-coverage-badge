@@ -5,7 +5,11 @@ inputs:
   opencover_path:
     description: 'the path to the opencover.xml file'
     required: true
-    
+
 outputs:
   coverage_percentage:
     description: 'The code coverage percentage'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
