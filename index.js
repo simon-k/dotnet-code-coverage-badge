@@ -23,11 +23,11 @@ try {
 
 function publishBadge(badgeData, gistFilename, gistId, gistAuthToken) {
   if (gistFilename == null || gistId == null || gistAuthToken == null) {   //TODO: Test for null or undefined?
-    Console.log("Posting shields.io data to Gist");
+    console.log("Posting shields.io data to Gist");
     postGist(badgeData, gistFilename, gistId, gistAuthToken);
   }
   else {
-    Console.log("GitHub Gist filename, id and auth token are required to post shields.io data");
+    console.log("GitHub Gist filename, id and auth token are required to post shields.io data");
   }
 }
 
