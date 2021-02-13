@@ -5,7 +5,7 @@ const fs = require('fs')
 try {
   const opencoverPath = core.getInput('opencover_path');
   
-  var opencoverReport = readOpencoverFile(opencoverPath);
+  var opencoverReport = readFile(opencoverPath);
   var coveragePercentage = extractSummaryFromOpencover(opencoverReport);
 
   //TODO: Generate json that shields.io can use
@@ -18,12 +18,12 @@ try {
   core.setFailed(error);
 }
 
-function readOpencoverFile(path) {
-  if (!fs.existsSync(opencoverPath)) {
-    throw new Error('The Opencover file was not found at the location: "' + opencoverPath + '"'); 
+function readFile(path) {
+  if (!fs.existsSync(path)) {
+    throw new Error('The file was not found at the location: "' + path + '"'); 
   }
 
-  return fs.readFileSync(opencoverPath, 'utf8');
+  return fs.readFileSync(path, 'utf8');
 }
 
 
