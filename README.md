@@ -25,6 +25,16 @@ TODO: Make a table with the output parameters. Name | Required or Optional | Des
 TODO: Example
 TODO: What to add in your readme
 
+## Step-by-step Guide
+### Create Gist
+1. TODO: Describe steps
+
+### Configure Workflow
+1. TODO: Describe steps
+
+### Update Your Readme
+1. TODO: Describe steps
+
 ## Contributing .NET Code Coverage Badge
 ### Bugs and Features
 If you encounter a bug or want to suggest a new feature, then create a [GitHib Issue](https://github.com/simon-k/dotnet-code-coverage-badge/issues).
