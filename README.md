@@ -1,3 +1,6 @@
+[![license](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+[![market](https://img.shields.io/badge/Get_it-on_the_Marketplace-informational.svg)](https://github.com/marketplace/actions/dotnet-code-coverage-badge)
+
 # .NET Code Coverage Badge
 This action allows you to create badges for your README.md, with shields.io, which will show the code coverage percentage. This action does not need to push anything to your repository - it will use a gist instead. 
 
