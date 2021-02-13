@@ -33,7 +33,7 @@ If you encounter a bug or want to suggest a new feature, then create a [GitHib I
 We are happy to receive contributions in the form of pull requests via Github. Feel free to branch the repository, implement your changes and create a pull request to the main branch.
 
 ### Versioning and Releases
-We are using (semver)[https://semver.org/]. 
+We are using [semver](https://semver.org/). 
 New releases are made by tagging the main branch.
 
 ## Notes
