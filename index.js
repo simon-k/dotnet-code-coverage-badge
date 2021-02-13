@@ -3,20 +3,33 @@ const http = require('https');
 const fs = require('fs')
 
 try {
-  const opencoverPath = core.getInput('opencover_path');
-  
-  var opencoverReport = readFile(opencoverPath);
-  var coveragePercentage = extractSummaryFromOpencover(opencoverReport);
+  const label = core.getInput('label');
+  const path = core.getInput('path');
+  const color = core.getInput('color');
 
-  //TODO: Generate json that shields.io can use
+  let testReport = readFile(path);
+  let coveragePercentage = extractSummaryFromOpencover(testReport);
+  let badgeData = createBadgeData(label, coveragePercentage, color);
 
   //TODO: Upload the json to a gist.
 
-  core.setOutput("coverage_percentage", coveragePercentage);
-
+  core.setOutput("badge", badgeData);
+  core.setOutput("percentage", coveragePercentage);
 } catch (error) {
   core.setFailed(error);
 }
+
+function createBadgeData(label, coveragePercentage, color) {
+  let badgeData = {
+    schemaVersion: 1,
+    label: label,
+    message: coveragePercentage + '%',
+    color: color
+  };
+
+  return badgeData;
+}
+
 
 function readFile(path) {
   if (!fs.existsSync(path)) {
@@ -28,8 +41,8 @@ function readFile(path) {
 
 
 function extractSummaryFromOpencover(content) {
-  var rx = /(?<=sequenceCoverage=")\d*\.*\d*(?=")/m;
-  var arr = rx.exec(content);
+  let rx = /(?<=sequenceCoverage=")\d*\.*\d*(?=")/m;
+  let arr = rx.exec(content);
 
   if (arr == null) {
     throw new Error('No code coverage percentage was found in the provided opencover report. Was looking for an xml elemet named Summary with the attribute sequenceCoverage');

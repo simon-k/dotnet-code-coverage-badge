@@ -22,7 +22,12 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: test_step
         with:
-          opencover_path: "test/coverage.opencover.xml"
+          label: "My Label"
+          color: "red"
+          path: "test/coverage.opencover.xml"
         
       - name: Print code coverage
-        run: echo "Code coverage percentage ${{ steps.test_step.outputs.coverage_percentage }} %"
+        run: echo "Code coverage percentage ${{steps.test_step.outputs.percentage}}%"
+
+      - name: Print badge data
+        run: echo "Badge data ${{steps.test_step.outputs.badge}}%"

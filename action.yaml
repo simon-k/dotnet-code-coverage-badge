@@ -2,13 +2,23 @@ name: 'DotNet Code Coverage Badge'
 description: 'Extact code coverage percentage from an opencover report and generates metadata for a shields.io badge'
 
 inputs:
-  opencover_path:
+  label:
+    description: 'The badge label. For example "Unit Test Coverage"'
+    required: false
+    default: 'Test Coverage'
+  color:
+    description: 'The color of the badge. See https://shields.io/ for options'
+    required: false
+    default: 'brightgreen'
+  path:
     description: 'the path to the opencover.xml file'
     required: true
 
 outputs:
-  coverage_percentage:
+  percentage:
     description: 'The code coverage percentage'
+  badge:
+    description: 'The badge data as in json format as required by shields.io'
 
 runs:
   using: 'node12'
