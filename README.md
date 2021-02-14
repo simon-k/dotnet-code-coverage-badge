@@ -19,7 +19,7 @@ This action allows you to create badges for your README.md, with shields.io, whi
       * [Create Gist](#create-gist)
       * [Configure Workflow](#configure-workflow)
       * [Update Your Readme](#update-your-readme)
-   * [Contributing to .NET Code Coverage Badge](#contributing-to-.net-code-coverage-badge)
+   * [Contributing to .NET Code Coverage Badge](#contributing-to-net-code-coverage-badge)
      * [Bugs and Features](#bugs-and-features)
      * [Update the Sourceode](#update-the-sourceode)
      * [Versioning and Releases](#versioning-and-releases)
@@ -112,7 +112,33 @@ jobs:
 ![Repo Secret](/documentation/gist-step-3.png)
 
 ### Configure Workflow
-1. TODO: Describe steps
+In youe workflow update the test action to generate the report and then call the .NET Code Coverage Badge action. 
+
+```
+- name: Test
+  run: dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal <MyProject>.Tests/
+      
+- name: Create Test Coverage Badge
+  uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+  id: create_coverage_badge
+  with:
+    label: Unit Test Coverage
+    color: brightgreen
+    path: <MyProject>.Tests/TestResults/coverage.opencover.xml
+    gist-filename: code-coverage.json
+    gist-id: 1234567890abcdef1234567890abcdef
+    gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
+```
+
+Optionally print the code coverage and badge data after the .NET Code Coverage Badge action like this:
+
+```
+- name: Print code coverage
+  run: echo "Code coverage percentage ${{steps.create_coverage_badge.outputs.percentage}}%"
+
+- name: Print badge data
+  run: echo "Badge data ${{steps.test_step.outputs.badge}}"
+```
 
 ### Update Your Readme
 Once the workflow is executed, got to your gist and make sure that the content of this file now contains the badge data.
