@@ -1,6 +1,9 @@
 name: 'DotNet Code Coverage Badge'
 description: 'Extact code coverage percentage from an opencover report and generates metadata for a shields.io badge'
-
+branding:
+  icon: 'award'  
+  color: 'yellow'
+  
 inputs:
   label:
     description: 'The badge label. For example "Unit Test Coverage"'
