@@ -24,7 +24,7 @@ dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletO
 
 The above command will generate an opencover report in ```TestResults/coverage.opencover.xml```. 
 
-You don't necessarily have to use the above example to generate the opencover report. If you have other means of doing this, then that should not cause any problems. As long as you can provide a path for the file.
+You don't necessarily have to use the above example to generate the opencover report. If you have other means of doing this, then that should not cause any problems. You actually don't even need a .NET solution. As long as you can provide a path for the coverage file. 
 
 ## Inputs
 | Name            | Required  | Description |
@@ -42,9 +42,41 @@ You don't necessarily have to use the above example to generate the opencover re
 | percentage      | The code coverage percentage extracted from the file in the provided path |
 | badge           | The badge data as in json format as required by shields.io |
 
-## Example usage
-TODO: Example
-TODO: What to add in your readme
+## Example Usage
+Below is a snippet of a typical .NET workflow that will restore dependencies, build solution and run unit tests. After those actions the .NET Code Coverage Badge will be generated and the ```percentage``` printet to the workflow log. If you copy-paste this, be sure to rename the ```<MyProject>``` and adjust tje ```gist-filename```, ```gist-id``` and ```gist-auth-token``` to your configuration.
+
+```
+name: Unit Test With Coverage
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Restore dependencies
+      run: dotnet restore   
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal <MyProject>.Tests/
+    - name: Create Test Coverage Badge
+      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+      id: create_coverage_badge
+      with:
+        label: Unit Test Coverage
+        color: brightgreen
+        path: <MyProject>.Tests/TestResults/coverage.opencover.xml
+        gist-filename: code-coverage.json
+        gist-id: 1234567890abcdef1234567890abcdef
+        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
+    - name: Print code coverage
+      run: echo "Code coverage percentage ${{steps.create_coverage_badge.outputs.percentage}}%"
+```
 
 ## Step-by-step Guide
 ### Create Gist
