@@ -14,15 +14,33 @@ This action reads a code coverage report in opencover format. For example genera
 a gist secret and filename is give, then the shields.io 
 
 ## Requirements
-TODO: It is required that a test coverage report is in the workflow. 
-TODO: Tell how to insall the coverlet nuget and how to run a test with coverage. 
+For this action to work there must be an opencover.xml file available in the workflow and a path to it must be specified as an input parameter.
+
+Making this opencover.xml in .NET is really simple. All you need to do is to install the nuget package ```coverlet.msbuild``` and it's dependency ```coverlet.collector``` in your test project. Then you can generate the test coverage file during your test execution with this command:
+
+```
+dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover
+```
+
+The above command will generate an opencover report in ```TestResults/coverage.opencover.xml```. 
+
+You don't necessarily have to use the above example to generate the opencover report. If you have other means of doing this, then that should not cause any problems. As long as you can provide a path for the file.
 
 ## Inputs
-TODO: Make a table with the input parameters. Name | Required or Optional | Description
+| Name            | Required  | Description |
+| --------------- |:---------:| ------------|
+| label           | Optional  | The badge label. For example "Unit Test Coverage". Default value is "Test Coverage" |
+| color           | Optional  | The color of the badge. See https://shields.io/ for options. Default value is brightgreen |
+| path            | Required  | The path to the opencover.xml file |
+| gist-filename   | Optional  | Filename of the Gist used for storing the badge data |
+| gist-id         | Optional  | ID if the Gist used for storing the badge data |
+| gist-auth-token | Optional  | Auth token that alows to write to the given Gist |
 
 ## Outputs
-
-TODO: Make a table with the output parameters. Name | Required or Optional | Description
+| Name            | Description |
+| --------------- | ------------|
+| percentage      | The code coverage percentage extracted from the file in the provided path |
+| badge           | The badge data as in json format as required by shields.io |
 
 ## Example usage
 TODO: Example
@@ -59,7 +77,7 @@ Embed the badge in your README like this:
 The ```<user>``` is the user who owns the gist.
 
 
-## Contributing .NET Code Coverage Badge
+## Contributing to .NET Code Coverage Badge
 ### Bugs and Features
 If you encounter a bug or want to suggest a new feature, then create a [GitHib Issue](https://github.com/simon-k/dotnet-code-coverage-badge/issues).
 
@@ -72,6 +90,7 @@ New releases are made by tagging the main branch.
 
 ## Notes
 * The coverage report must be stored in ```utf8``` encoding
+* You don't have to provide the gist parameters if you do not want to store the badge data in gist. You can use the output parameter ```badge``` if you want to store the badge in some other way.
 
 ## References
 * [GitHub Documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action)
