@@ -1,0 +1,36 @@
+{
+  "ClassLibrary1.dll": {
+    "C:\\Users\\SKF\\source\\repos\\ClassLibrarySolution\\ClassLibrary1\\Class1.cs": {
+      "ClassLibrary1.Class1": {
+        "System.Int32 ClassLibrary1.Class1::Add(System.Int32,System.Int32)": {
+          "Lines": {
+            "8": 1,
+            "9": 1,
+            "10": 1
+          },
+          "Branches": []
+        },
+        "System.Int32 ClassLibrary1.Class1::Sub(System.Int32,System.Int32)": {
+          "Lines": {
+            "13": 1,
+            "14": 1,
+            "15": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\SKF\\source\\repos\\ClassLibrarySolution\\ClassLibrary1\\Class2.cs": {
+      "ClassLibrary1.Class2": {
+        "System.Void ClassLibrary1.Class2::Hmm()": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

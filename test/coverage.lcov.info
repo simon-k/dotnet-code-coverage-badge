@@ -1,0 +1,31 @@
+SF:C:\Users\SKF\source\repos\ClassLibrarySolution\ClassLibrary1\Class1.cs
+FN:7,System.Int32 ClassLibrary1.Class1::Add(System.Int32,System.Int32)
+FNDA:1,System.Int32 ClassLibrary1.Class1::Add(System.Int32,System.Int32)
+DA:8,1
+DA:9,1
+DA:10,1
+FN:12,System.Int32 ClassLibrary1.Class1::Sub(System.Int32,System.Int32)
+FNDA:1,System.Int32 ClassLibrary1.Class1::Sub(System.Int32,System.Int32)
+DA:13,1
+DA:14,1
+DA:15,1
+LF:6
+LH:6
+BRF:0
+BRH:0
+FNF:2
+FNH:2
+end_of_record
+SF:C:\Users\SKF\source\repos\ClassLibrarySolution\ClassLibrary1\Class2.cs
+FN:9,System.Void ClassLibrary1.Class2::Hmm()
+FNDA:0,System.Void ClassLibrary1.Class2::Hmm()
+DA:10,0
+DA:11,0
+DA:12,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record

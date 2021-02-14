@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<coverage line-rate="0.6666" branch-rate="1" version="1.9" timestamp="1613309860" lines-covered="6" lines-valid="9" branches-covered="0" branches-valid="0">
+  <sources>
+    <source>C:\Users\SKF\source\repos\ClassLibrarySolution\ClassLibrary1\</source>
+  </sources>
+  <packages>
+    <package name="ClassLibrary1" line-rate="0.6666" branch-rate="1" complexity="3">
+      <classes>
+        <class name="ClassLibrary1.Class1" filename="Class1.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Add" signature="(System.Int32,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="1" branch="False" />
+                <line number="9" hits="1" branch="False" />
+                <line number="10" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="Sub" signature="(System.Int32,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="1" branch="False" />
+                <line number="14" hits="1" branch="False" />
+                <line number="15" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="8" hits="1" branch="False" />
+            <line number="9" hits="1" branch="False" />
+            <line number="10" hits="1" branch="False" />
+            <line number="13" hits="1" branch="False" />
+            <line number="14" hits="1" branch="False" />
+            <line number="15" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="ClassLibrary1.Class2" filename="Class2.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="Hmm" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="10" hits="0" branch="False" />
+                <line number="11" hits="0" branch="False" />
+                <line number="12" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="0" branch="False" />
+            <line number="11" hits="0" branch="False" />
+            <line number="12" hits="0" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
