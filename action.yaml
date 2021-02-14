@@ -1,4 +1,4 @@
-name: 'DotNet Code Coverage Badge'
+name: '.Net Code Coverage Badge'
 description: 'Extact code coverage percentage from an opencover report and generates metadata for a shields.io badge'
 branding:
   icon: 'award'  
