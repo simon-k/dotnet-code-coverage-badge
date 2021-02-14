@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added 
 - CHANGELOG.md
+- Test files for json, lcov, teamcity and cobertura. To be used in future versions.
 
 ## 1.0.0
 ### Added
