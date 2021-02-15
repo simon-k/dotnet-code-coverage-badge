@@ -130,7 +130,7 @@ In youe workflow update the test action to generate the report and then call the
     gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
 ```
 
-Optionally print the code coverage and badge data after the .NET Code Coverage Badge action like this:
+Optionally print the code coverage and badge data after the .NET Code Coverage Badge action like this. _Remember to set the ID of te code coverage action like in the above example._
 
 ```
 - name: Print code coverage
