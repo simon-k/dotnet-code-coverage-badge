@@ -21,7 +21,7 @@ This action allows you to create badges for your README.md, with shields.io, whi
       * [Update Your Readme](#update-your-readme)
    * [Contributing to .NET Code Coverage Badge](#contributing-to-net-code-coverage-badge)
      * [Bugs and Features](#bugs-and-features)
-     * [Update the Sourceode](#update-the-sourceode)
+     * [Update the Source Code](#update-the-source-code)
      * [Versioning and Releases](#versioning-and-releases)
    * [Notes](#notes)
 
@@ -112,7 +112,7 @@ jobs:
 ![Repo Secret](/documentation/gist-step-3.png)
 
 ### Configure Workflow
-In youe workflow update the test action to generate the report and then call the .NET Code Coverage Badge action. 
+In your workflow update the test action to generate the report and then call the .NET Code Coverage Badge action. 
 
 ```
 - name: Test
@@ -155,7 +155,7 @@ The ```<user>``` is the user who owns the gist.
 ### Bugs and Features
 If you encounter a bug or want to suggest a new feature, then create a [GitHib Issue](https://github.com/simon-k/dotnet-code-coverage-badge/issues).
 
-### Update the Sourceode
+### Update the Source Code
 We are happy to receive contributions in the form of pull requests via Github. Feel free to branch the repository, implement your changes and create a pull request to the main branch.
 
 ### Versioning and Releases
