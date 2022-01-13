@@ -14,8 +14,14 @@ inputs:
     required: false
     default: 'brightgreen'
   path:
-    description: 'the path to the opencover.xml file'
+    description: 'the path to the opencover.xml file or the test results directory'
     required: true
+  filename: 
+    description: 'the name of opencover.xml file. Optional if full path is provided in path'
+    required: false
+  discover-directory: 
+    description: 'if true, attempts to locate the most recent test run directory'
+    required: false
   gist-filename:
     description: 'Filename of the Gist used for storing the badge data'
     required: false
