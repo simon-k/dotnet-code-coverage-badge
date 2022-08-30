@@ -1,16 +1,23 @@
 const core = require('@actions/core');
 const http = require('https');
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
 
 try {
   const label = core.getInput('label');
-  const path = core.getInput('path');
+  const filepath = core.getInput('path');
+  const filename = core.getInput('filename');
+  const discoverDirectory = core.getInput('discover-directory');
   const color = core.getInput('color');
   const gistFilename = core.getInput('gist-filename');
   const gistId = core.getInput('gist-id');
   const gistAuthToken = core.getInput('gist-auth-token');
 
-  let testReport = readFile(path);
+  const dir = !!discoverDirectory ? 
+    path.join(filepath, getMostRecentDirectory(filepath).file, filename) :
+    path.join(filepath, filename);
+
+  let testReport = readFile(dir);
   let coveragePercentage = extractSummaryFromOpencover(testReport);
   let badgeData = createBadgeData(label, coveragePercentage, color);
   publishBadge(badgeData, gistFilename, gistId, gistAuthToken);
@@ -29,6 +36,18 @@ function publishBadge(badgeData, gistFilename, gistId, gistAuthToken) {
     console.log("Posting shields.io data to Gist");
     postGist(badgeData, gistFilename, gistId, gistAuthToken);
   }
+}
+
+function getMostRecentDirectory(dir) {
+  const files = orderMostRecentDirectories(dir);
+  return files.length ? files[0] : undefined;
+} 
+
+function orderMostRecentDirectories(dir) {
+  return fs.readdirSync(dir)
+  .filter(file => fs.lstatSync(path.join(dir, file)).isDirectory())
+  .map(file => ({ file, mtime: fs.lstatSync(path.join(dir, file)).mtime }))
+  .sort((a, b) => b.mtime.getTime() - a.mtime.getTime());
 }
 
 function postGist(badgeData, gistFilename, gistId, gistAuthToken) {

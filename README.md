@@ -12,6 +12,8 @@ This action allows you to create badges for your README.md, with shields.io, whi
 ## Table of Content
    * [How it Works](#how-it-works)
    * [Requirements](#requirements)
+      * [VSTest](#vstest)
+      * [MSBuild](#msbuild)
    * [Inputs](#inputs)
    * [Outputs](#outputs)
    * [Example Usage](#example-usage)
@@ -34,25 +36,63 @@ This action allows you to create badges for your README.md, with shields.io, whi
 ## Requirements
 For this action to work there must be an opencover.xml file available in the workflow and a path to it must be specified as an input parameter.
 
-Making this opencover.xml in .NET is really simple. All you need to do is to install the nuget package ```coverlet.msbuild``` and it's dependency ```coverlet.collector``` in your test project. Then you can generate the test coverage file during your test execution with this command:
+For .NET, [Coverlet](https://github.com/coverlet-coverage/coverlet) makes this really simple and flexible. However, you should be aware that there is a 
+[known issue](https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/KnownIssues.md#1-vstest-stops-process-execution-earlydotnet-test) in 
+the msbuild version of the project, despite it being the easiest option!
+
+### VSTest 
+
+If you are using VSTest to run your tests, you can install the `coverlet.collector` nuget package to create opencover formatted coverage results. To setup your application
+for `coverlet.collector`, you must first create a file with a `.runsettings` extension in the solution directory. You will use that `.runsettings` file to configure `coverlet.collector`
+like so:
+
+```xml
+<!-- coverlet.runsettings -->
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>opencover</Format>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
+```
+[Check here for more configuration options](https://github.com/coverlet-coverage/coverlet/blob/master/Documentation/VSTestIntegration.md)
+
+Once you have your `.runsettings` all wrapped up, you can use the following command to generate the coverage report:
+
+```
+dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+```
+
+### MSTest
+
+Despite it's known issues, if it's usable in your environment, `coverlet.msbuild` is by far the easiest option. All you need to do is install the `coverlet.msbuild` nuget 
+package in your test project, and then you can run the following command to generate test coverage:
 
 ```
 dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover
 ```
-
 The above command will generate an opencover report in ```TestResults/coverage.opencover.xml```. 
+
 
 You don't necessarily have to use the above example to generate the opencover report. If you have other means of doing this, then that should not cause any problems. You actually don't even need a .NET solution. As long as you can provide a path for the coverage file. 
 
 ## Inputs
-| Name            | Required  | Description |
-| --------------- |:---------:| ------------|
-| label           | Optional  | The badge label. For example "Unit Test Coverage". Default value is "Test Coverage" |
-| color           | Optional  | The color of the badge. See https://shields.io/ for options. Default value is brightgreen |
-| path            | Required  | The path to the opencover.xml file |
-| gist-filename   | Optional  | Filename of the Gist used for storing the badge data |
-| gist-id         | Optional  | ID if the Gist used for storing the badge data |
-| gist-auth-token | Optional  | Auth token that alows to write to the given Gist |
+| Name                | Required  | Description                                                                               |
+| ------------------- |:---------:| ----------------------------------------------------------------------------------------- |
+| label               | Optional  | The badge label. For example "Unit Test Coverage". Default value is "Test Coverage"       |
+| color               | Optional  | The color of the badge. See https://shields.io/ for options. Default value is brightgreen |
+| path                | Required  | The path to the opencover.xml file or test results directory                              |
+| filename            | Optional  | The name of opencover.xml file. Optional if full path is provided in path                 |
+| discover-directory  | Optional  | Ff true, attempts to locate the most recent test run directory                            |
+| gist-filename       | Optional  | Filename of the Gist used for storing the badge data                                      |
+| gist-id             | Optional  | ID if the Gist used for storing the badge data                                            |
+| gist-auth-token     | Optional  | Auth token that alows to write to the given Gist                                          |
 
 ## Outputs
 | Name            | Description |
